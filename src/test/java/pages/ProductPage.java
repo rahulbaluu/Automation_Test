@@ -43,26 +43,28 @@ public class ProductPage extends BrowserDriver {
 		Thread.sleep(2000);
 		String click_Check_Product_Name = driver.findElement(By.xpath(check_Product_Name)).getText();
 		assertEquals ("Blue Top", click_Check_Product_Name);
-		System.out.println("Clicked on Product Name: " + click_Check_Product_Name);
+		System.out.println(" Verified Product Name: " + click_Check_Product_Name);
 	}
 
 	public static void click_Check_Availability() throws InterruptedException {
 		Thread.sleep(2000);
 		String click_Check_Availability = driver.findElement(By.xpath(check_Availability)).getText();
 		assertEquals ("Availability:", click_Check_Availability);
-		System.out.println("Clicked on Availability:" + click_Check_Availability);
+		System.out.println("Verified Availability:" + click_Check_Availability);
 	}
 
 	public static void click_Check_Condition() throws InterruptedException {
 		Thread.sleep(2000);
 		String click_Check_Condition = driver.findElement(By.xpath(check_Condition)).getText();
 		assertEquals ("Condition:", click_Check_Condition);
+		System.out.println("Verified Condition:" + click_Check_Condition);
 	}
 
 	public static void click_Check_Brand() throws InterruptedException {
 		Thread.sleep(2000);
 		String click_Check_Brand = driver.findElement(By.xpath(check_Brand)).getText();
 		assertEquals ("Brand:", click_Check_Brand);
+		System.out.println("Verified Brand:" + click_Check_Brand);
 	}
 
 	public static void click_Back() throws InterruptedException {
