@@ -22,53 +22,64 @@ public class ProductPageTest extends BrowserDriver {
 	private static final String check_Condition = "/html/body/section/div/div/div[2]/div[2]/div[2]/div/p[3]/b";
 	private static final String check_Brand = "/html/body/section/div/div/div[2]/div[2]/div[2]/div/p[4]/b";
 
+	// WebDriverWait should be initialized here
 	private WebDriverWait wait;
 
 	@BeforeClass
 	public void setUp(){
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		if (BrowserDriver.driver == null) {
+			BrowserDriver.initializeDriver();
+		}
 	}
 
 	@Test(priority = 1)
 	public void click_Product_Icon(){
+		wait = new WebDriverWait(driver, Duration.ofSeconds(20)); // Wait time 20 secondsneed to re-initialize the wait object here
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(product_icon))).click();
 	}
+
 	@Test(priority = 2)
 	public void click_View_Product_Icon(){
 		WebElement productLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(view_product_icon)));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", productLink);
 		productLink.click();
 	}
+
 	@Test(priority = 3)
 	public void click_Check_Category(){
 		String product_icon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(check_Category))).getText();
-		assertEquals ("Category: Women > Tops", product_icon);
+		assertEquals("Category: Women > Tops", product_icon);
 		System.out.println("Category: " + product_icon);
 	}
+
 	@Test(priority = 4)
 	public void click_Check_Product_Name(){
-		String click_Check_Product_Name =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(check_Product_Name))).getText();
-		assertEquals ("Blue Top", click_Check_Product_Name);
+		String click_Check_Product_Name = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(check_Product_Name))).getText();
+		assertEquals("Blue Top", click_Check_Product_Name);
 		System.out.println(" Verified Product Name: " + click_Check_Product_Name);
 	}
+
 	@Test(priority = 5)
 	public void click_Check_Availability(){
 		String click_Check_Availability = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(check_Availability))).getText();
-		assertEquals ("Availability:", click_Check_Availability);
+		assertEquals("Availability:", click_Check_Availability);
 		System.out.println("Verified Availability:" + click_Check_Availability);
 	}
+
 	@Test(priority = 6)
 	public void click_Check_Condition(){
 		String click_Check_Condition = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(check_Condition))).getText();
-		assertEquals ("Condition:", click_Check_Condition);
+		assertEquals("Condition:", click_Check_Condition);
 		System.out.println("Verified Condition:" + click_Check_Condition);
 	}
+
 	@Test(priority = 7)
 	public void click_Check_Brand(){
 		String click_Check_Brand = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(check_Brand))).getText();
-		assertEquals ("Brand:", click_Check_Brand);
+		assertEquals("Brand:", click_Check_Brand);
 		System.out.println("Verified Brand:" + click_Check_Brand);
 	}
+
 	@Test(priority = 8)
 	public void click_Back() {
 		driver.quit();

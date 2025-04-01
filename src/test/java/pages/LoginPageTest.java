@@ -12,20 +12,23 @@ public class LoginPageTest extends BrowserDriver {
 	private static final String login_email_address = "//*[@id=\"form\"]/div/div/div[1]/div/form/input[2]";
 	private static final String login_password = "//*[@id=\"form\"]/div/div/div[1]/div/form/input[3]";
 	private static final String login_button = "//*[@id=\"form\"]/div/div/div[1]/div/form/button";
-	private WebDriverWait wait;
 
 	@BeforeClass
 	public void setUp(){
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		if (BrowserDriver.driver == null) {
+			BrowserDriver.initializeDriver();
+		}
 	}
 
 	@Test(priority = 1)
 	public void enter_the_name_and_email_address(){
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(login_email_address))).sendKeys("rahul@rah.com");
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(login_password))).sendKeys("rahul1234");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20)); // Increase to 20 seconds or more
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(login_email_address)));
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(login_email_address))).sendKeys("rahul@rah.com");wait.until(ExpectedConditions.elementToBeClickable(By.xpath(login_password))).sendKeys("rahul1234");
 	}
 	@Test(priority = 2)
 	public void click_login_button(){
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20)); // Increase to 20 seconds or more
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(login_button))).click();
 	}
 	@Test(priority = 3)
