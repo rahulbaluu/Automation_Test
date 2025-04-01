@@ -9,7 +9,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utility.BrowserDriver;
 import java.time.Duration;
-
 import static org.junit.Assert.assertEquals;
 
 
@@ -34,7 +33,7 @@ public class ProductPageTest extends BrowserDriver {
 
 	@Test(priority = 1)
 	public void click_Product_Icon(){
-		wait = new WebDriverWait(driver, Duration.ofSeconds(20)); // Wait time 20 secondsneed to re-initialize the wait object here
+		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(product_icon))).click();
 	}
 
